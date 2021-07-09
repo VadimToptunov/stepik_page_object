@@ -12,7 +12,6 @@ class ProductPage(BasePage):
     	self.should_present_add_to_basket_button()
     	self.should_present_add_to_wishlist_button()
     	self.product_description_is_not_empty()
-    	self.product_name = self.get_product_name()
 
     def should_be_product_link(self):
     	product_url_part = "catalogue"
@@ -50,11 +49,15 @@ class ProductPage(BasePage):
     	self.find(*ProductPageLocators.ADD_TO_BASKET_BUTTON).click()
 
 
-    def get_product_name(self):
-    	return self.get_element_text(*ProductPageLocators.PRODUCT_NAME)
+    def get_product_name_and_price(self):
+    	return (self.get_element_text(*ProductPageLocators.PRODUCT_NAME), self.get_element_text(*ProductPageLocators.PRICE))
 
-    def check_product_added_to_basket(self):
-    	expected_text = f"{self.product_name} has been added to your basket."
-    	actual_text = self.get_element_text(*ProductPageLocators.PRODUCT_ADDED_ELEMENT)
-    	assert actual_text == expected_text, f"'{actual_text}' is not equal to '{expected_text}'"
 
+    def check_product_added_to_basket(self, product_name, price):
+    	expected_product_name = f"{product_name} has been added to your basket."
+    	expected_total = f"Your basket total is now {price}"
+    	actual_product_name = self.get_element_text(*ProductPageLocators.PRODUCT_ADDED_ELEMENT)
+    	actual_total = self.get_element_text(*ProductPageLocators.BASKET_TOTAL_ELEMENT)
+    	assert (expected_product_name, expected_total) == (actual_product_name, actual_total), f"\
+    	'{actual_product_name}' is not equal to '{expected_product_name}' and '{actual_total}' \
+    	is not equal to '{expected_total}'"

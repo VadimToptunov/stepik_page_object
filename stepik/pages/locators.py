@@ -20,5 +20,6 @@ class ProductPageLocators():
 	ADD_TO_WISHLIST_BUTTON = (By.CSS_SELECTOR, ".btn.btn-lg.btn-wishlist")
 	PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, ".sub-header#product_description~p")
 	PRODUCT_ADDED_ELEMENT = (By.CSS_SELECTOR, ".alertinner")
+	BASKET_TOTAL_ELEMENT = (By.CSS_SELECTOR, ".alertinner p")
 		
 		
