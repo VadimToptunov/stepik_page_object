@@ -21,5 +21,6 @@ class ProductPageLocators():
 	PRODUCT_DESCRIPTION = (By.CSS_SELECTOR, ".sub-header#product_description~p")
 	PRODUCT_ADDED_ELEMENT = (By.CSS_SELECTOR, ".alertinner")
 	BASKET_TOTAL_ELEMENT = (By.CSS_SELECTOR, ".alertinner p")
+	SUCCESS_ALERT = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success")
 		
 		

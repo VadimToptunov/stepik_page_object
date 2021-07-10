@@ -41,6 +41,14 @@ class ProductPage(BasePage):
     	assert self.is_element_present(*ProductPageLocators.ADD_TO_WISHLIST_BUTTON), "No 'Add to wishlist' button presents on the page."
 
 
+    def should_not_be_success_message(self):
+    	assert self.is_not_element_present(*ProductPageLocators.PRODUCT_ADDED_ELEMENT), "Success message is presented, but should not be"
+
+
+    def success_message_should_disappear(self):
+    	assert self.is_disappeared(*ProductPageLocators.PRODUCT_ADDED_ELEMENT), "Success message is not disappeared, while it should."
+
+
     def product_description_is_not_empty(self):
     	assert self.is_element_text_not_empty(*ProductPageLocators.PRODUCT_DESCRIPTION), "Product description is empty."
 
