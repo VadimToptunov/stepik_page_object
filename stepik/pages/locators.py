@@ -4,6 +4,14 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    VIEW_BASKET_BUTTON = (By.CSS_SELECTOR, ".btn-group .btn.btn-default")
+
+class BasketPageLocators():
+	BASKET_HEADER = (By.CSS_SELECTOR, ".page-header.action h1")
+	BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner p")
+	BASKET_SUMMARY_ELEMENT = (By.CSS_SELECTOR, ".basket_summary#basket_formset")	
+	BASKET_BREAD_CRUMB = (By.CSS_SELECTOR, ".breadcrumb .active")
+	BASKET_NAVBAR_BUTTON = (By.CSS_SELECTOR, ".btn.btn-default.navbar-btn.btn-cart")
 	
 
 class MainPageLocators():

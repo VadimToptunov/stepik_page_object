@@ -1,4 +1,5 @@
 from links.links import ProjectLinks
+from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 from pages.locators import ProductPageLocators
@@ -55,3 +56,12 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page = LoginPage(browser, ProjectLinks.PROD_LINK)
     login_page.should_be_login_page()
 
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    page = ProductPage(browser, ProjectLinks.PROD_LINK)
+    page.open()
+    page.go_to_basket()
+    basket_page = BasketPage(browser, ProjectLinks.PROD_LINK)
+    basket_page.should_be_basket_page()
+    basket_page.should_not_have_products_added()
+    basket_page.should_have_empty_basket_message()

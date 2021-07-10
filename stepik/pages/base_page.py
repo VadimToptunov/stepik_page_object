@@ -28,8 +28,12 @@ class BasePage(object):
 
 
     def go_to_login_page(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link = self.find(*BasePageLocators.LOGIN_LINK)
         link.click()
+
+
+    def go_to_basket(self):
+        self.find(*BasePageLocators.VIEW_BASKET_BUTTON).click()
 
 
     def is_element_present(self, how, what):
