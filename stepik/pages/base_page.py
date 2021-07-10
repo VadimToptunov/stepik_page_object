@@ -2,7 +2,7 @@ import math
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
-
+from .locators import BasePageLocators
 
 class BasePage(object):
     """
@@ -25,6 +25,11 @@ class BasePage(object):
 
     def get_element_text(self, how, what):
         return self.find(how, what).text
+
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
 
 
     def is_element_present(self, how, what):
@@ -76,6 +81,10 @@ class BasePage(object):
             return True
         else: 
             return False
+
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
 
     def solve_quiz_and_get_code(self):

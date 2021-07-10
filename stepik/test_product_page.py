@@ -1,8 +1,8 @@
 from links.links import ProjectLinks
+from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 from pages.locators import ProductPageLocators
 import pytest
-import time
 
 @pytest.mark.skip
 @pytest.mark.parametrize('link', ["offer0", "offer1", "offer2", "offer3", "offer4", "offer5", "offer6",
@@ -18,6 +18,7 @@ def test_guest_can_add_product_to_basket(browser, link):
 	product_page.solve_quiz_and_get_code()
 	product_page.check_product_added_to_basket(*data)
 
+
 @pytest.mark.xfail(reason="Success message appears, while should not.")
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
 	product_page = ProductPage(browser, ProjectLinks.NO_PROMO_PRODUCT_LINK)
@@ -31,9 +32,26 @@ def test_guest_cant_see_success_message(browser):
 	product_page.open()
 	product_page.should_not_be_success_message()
 
+
 @pytest.mark.xfail(reason="Element does not disappear")
 def test_message_disappeared_after_adding_product_to_basket(browser):
 	product_page = ProductPage(browser, ProjectLinks.NO_PROMO_PRODUCT_LINK)
 	product_page.open()
 	product_page.add_to_basket()
 	product_page.success_message_should_disappear()
+
+
+def test_guest_should_see_login_link_on_product_page(browser):
+    page = ProductPage(browser, ProjectLinks.PROD_LINK)
+    page.open()
+    page.should_be_login_link()
+
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    page = ProductPage(browser, ProjectLinks.PROD_LINK)
+    page.open()
+    page.should_be_login_link()
+    page.go_to_login_page()
+    login_page = LoginPage(browser, ProjectLinks.PROD_LINK)
+    login_page.should_be_login_page()
+
