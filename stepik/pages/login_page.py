@@ -27,4 +27,3 @@ class LoginPage(BasePage):
         self.find(*LoginPageLocators.REGISTER_PASSWORD).send_keys(password)
         self.find(*LoginPageLocators.REGISTER_CONFIRM_PASSWORD).send_keys(password)
         self.find(*LoginPageLocators.REGISTER_BUTTON).click()
-

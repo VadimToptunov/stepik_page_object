@@ -20,7 +20,7 @@ class TestUserAddToBasketFromProductPage():
         login_page.register_new_user(*creds)
         login_page.should_be_authorized_user()
 
-
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
 	    product_page = ProductPage(browser, ProjectLinks.NO_PROMO_PRODUCT_LINK)
 	    product_page.open()
@@ -38,7 +38,7 @@ class TestUserAddToBasketFromProductPage():
 
 @pytest.mark.basket_guest_tests
 class TestGuestAddToBasketFromProductPage():
-    @pytest.mark.skip
+    @pytest.mark.need_review
     @pytest.mark.parametrize('link', ["offer0", "offer1", "offer2", "offer3", "offer4", "offer5", "offer6",
 	                                  pytest.param("offer7", marks=pytest.mark.xfail),
 	                                  "offer8", "offer9"])
@@ -80,7 +80,7 @@ class TestGuestAddToBasketFromProductPage():
 	    page.open()
 	    page.should_be_login_link()
 
-
+    @pytest.mark.need_review
     def test_guest_can_go_to_login_page_from_product_page(self, browser):
 	    page = ProductPage(browser, ProjectLinks.PROD_LINK)
 	    page.open()
@@ -89,7 +89,7 @@ class TestGuestAddToBasketFromProductPage():
 	    login_page = LoginPage(browser, ProjectLinks.PROD_LINK)
 	    login_page.should_be_login_page()
 
-
+    @pytest.mark.need_review
     def test_guest_cant_see_product_in_basket_opened_from_product_page(self, browser):
 	    page = ProductPage(browser, ProjectLinks.PROD_LINK)
 	    page.open()
