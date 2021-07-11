@@ -1,4 +1,6 @@
 import math
+import random
+import string
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
@@ -89,6 +91,19 @@ class BasePage(object):
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented, probably unauthorised user."
+
+
+    def generate_random_string(self):
+        return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(16))
+
+
+    def generate_credentials(self):
+        body = self.generate_random_string()
+        return (f"{body}@fakemail.com", self.generate_random_string())
 
 
     def solve_quiz_and_get_code(self):

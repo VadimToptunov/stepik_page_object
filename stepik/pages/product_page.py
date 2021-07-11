@@ -10,7 +10,6 @@ class ProductPage(BasePage):
     	self.should_present_in_stock_availability()
     	self.should_present_write_review_button()
     	self.should_present_add_to_basket_button()
-    	self.should_present_add_to_wishlist_button()
     	self.product_description_is_not_empty()
 
     def should_be_product_link(self):
